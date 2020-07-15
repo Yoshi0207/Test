@@ -61,7 +61,7 @@ class Engine
                 'timeZone' => 'Asia/Tokyo',
             ),
         );*/
-        print($Items["event_title"]);
+        echo $Items["start_date"];
         $test = $Items["event_title"];
         $values = array(
             'summary' => "{$test}", //予定のタイトル
