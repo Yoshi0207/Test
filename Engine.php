@@ -67,6 +67,7 @@ class Engine
         echo $this->config->get('calendar_start_time');
         echo $this->config->get('calendar_end_date');
         echo $this->config->get('calendar_end_time');
+        echo $test;
         echo $field->get($test);
         $values = array(
             'summary' => "サンプル", //予定のタイトル
