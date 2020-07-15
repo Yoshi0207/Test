@@ -92,7 +92,7 @@ class Engine
 
         $event = new Google_Service_Calendar_Event($values);
 
-        $response = $service->event->insert($calendarId, $event);
+        $response = $service->events->insert($calendarId, $event);
 
         if (!$response->valid()) {
             throw new \RuntimeException('Failed to update the calendar.');
