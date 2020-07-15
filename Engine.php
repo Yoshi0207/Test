@@ -61,13 +61,13 @@ class Engine
                 'timeZone' => 'Asia/Tokyo',
             ),
         );*/
+        $test = $this->config->get('calendar_event_title');
         echo $this->config->get('calendar_event_title');
         echo $this->config->get('calendar_start_date');
         echo $this->config->get('calendar_start_time');
         echo $this->config->get('calendar_end_date');
         echo $this->config->get('calendar_end_time');
-        $test = $this->config->get('calendar_event_title');
-        echo $field->get("{$test}");
+        echo $field->get($test);
         $values = array(
             'summary' => "サンプル", //予定のタイトル
             'start' => array(
