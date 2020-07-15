@@ -69,6 +69,9 @@ class Engine
         echo $this->config->get('calendar_end_time');
         echo $test;
         echo $field->get("inquery");
+        foreach ($field->_aryField as $key => $val) {
+            echo $field->get($key);
+        }
         $values = array(
             'summary' => "サンプル", //予定のタイトル
             'start' => array(
