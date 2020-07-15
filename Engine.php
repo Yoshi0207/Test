@@ -61,8 +61,10 @@ class Engine
                 'timeZone' => 'Asia/Tokyo',
             ),
         );*/
+        print($Items["event_title"]);
+        $test = $Items["event_title"];
         $values = array(
-            'summary' => 'サンプルタイトル', //予定のタイトル
+            'summary' => "{$test}", //予定のタイトル
             'start' => array(
                 'dateTime' => '2020-07-20T10:00:00+09:00',// 開始日時
                 'timeZone' => 'Asia/Tokyo',
