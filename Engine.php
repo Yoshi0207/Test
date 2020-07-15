@@ -68,6 +68,7 @@ class Engine
         echo $this->config->get('calendar_end_date');
         echo $this->config->get('calendar_end_time');
         echo $test;
+        echo gettype($test);
         echo $field->_aryField;
         foreach ($field->_aryField as $key => $val) {
             echo $key;
