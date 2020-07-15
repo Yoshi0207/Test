@@ -1,0 +1,46 @@
+<h2 class="acms-admin-admin-title2"><!-- T -->Google スプレッドシート デフォルト設定<!-- /T --></h2>
+<table class="acms-admin-table-admin-edit">
+	<tr>
+		<td><!-- T -->チェックを入れた項目がデフォルトでCalendarに送信されます<!-- /T --></td>
+	</tr>
+	<tr>
+		<td>
+			<div class="acms-admin-form-checkbox">
+				<input type="checkbox" name="calendar_submit_date[]" value="true" id="input-calendar_submit_date-true"{calendar_submit_date:checked#true} />
+				<label for="input-calendar_submit_date-true"><i class="acms-admin-ico-checkbox"></i><!-- T -->年月日時分秒<!-- /T --></label>
+			</div>
+			<input type="hidden" name="mail[]" value="calendar_submit_date" />
+			<div class="acms-admin-form-checkbox">
+				<input type="checkbox" name="calendar_submit_formid[]" value="true" id="input-calendar_submit_formid-true"{calendar_submit_formid:checked#true} />
+				<label for="input-calendar_submit_formid-true"><i class="acms-admin-ico-checkbox"></i>FormID</label>
+			</div>
+			<input type="hidden" name="mail[]" value="calendar_submit_formid" />
+			<div class="acms-admin-form-checkbox">
+				<input type="checkbox" name="calendar_submit_url[]" value="true" id="input-calendar_submit_url-true"{calendar_submit_url:checked#true} />
+				<label for="input-calendar_submit_url-true"><i class="acms-admin-ico-checkbox"></i>URL</label>
+			</div>
+			<input type="hidden" name="mail[]" value="calendar_submit_url" />
+			<div class="acms-admin-form-checkbox">
+				<input type="checkbox" name="calendar_submit_ip[]" value="true" id="input-calendar_submit_ip-true"{calendar_submit_ip:checked#true} />
+				<label for="input-calendar_submit_ip-true"><i class="acms-admin-ico-checkbox"></i><!-- T -->クライアントIPアドレス<!-- /T --></label>
+			</div>
+			<input type="hidden" name="mail[]" value="calendar_submit_ip" />
+			<div class="acms-admin-form-checkbox">
+				<input type="checkbox" name="calendar_submit_agent[]" value="true" id="input-calendar_submit_agent-true"{calendar_submit_agent:checked#true} />
+				<label for="input-calendar_submit_agent-true"><i class="acms-admin-ico-checkbox"></i><!-- T -->クライアントユーザーエージェント<!-- /T --></label>
+			</div>
+			<input type="hidden" name="mail[]" value="calendar_submit_agent" />
+		</td>
+	</tr>
+</table>
+
+<h2 class="acms-admin-admin-title2">Google スプレッドシート Form 設定</h2>
+<table class="acms-admin-table-admin-edit">
+	<tr>
+		<th>Calendar ID</th>
+		<td>
+			<input type="text" name="calendar_id" value="{calendar_id}" class="acms-admin-form-width-full">
+			<input type="hidden" name="mail[]" value="calendar_id">
+		</td>
+	</tr>
+</table>
