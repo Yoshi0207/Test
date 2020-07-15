@@ -61,10 +61,14 @@ class Engine
                 'timeZone' => 'Asia/Tokyo',
             ),
         );*/
-        echo $Items["start_date"];
-        $test = $Items["event_title"];
+        echo $Items;
+        echo $this->config->get('calendar_event_title');
+        echo $this->config->get('calendar_start_date');
+        echo $this->config->get('calendar_start_time');
+        echo $this->config->get('calendar_end_date');
+        echo $this->config->get('calendar_end_time');
         $values = array(
-            'summary' => "{$test}", //予定のタイトル
+            'summary' => "サンプル", //予定のタイトル
             'start' => array(
                 'dateTime' => '2020-07-20T10:00:00+09:00',// 開始日時
                 'timeZone' => 'Asia/Tokyo',
