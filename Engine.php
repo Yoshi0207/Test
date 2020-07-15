@@ -5,6 +5,8 @@ namespace Acms\Plugins\GoogleCalendar;
 use DB;
 use SQL;
 use Field;
+use Google_Service_Calendar;
+use Google_Service_Calendar_Event;
 
 class Engine
 {
@@ -40,27 +42,37 @@ class Engine
     public function send()
     {
         $field = $this->module->Post->getChild('field');
-        $checkItems = array(
-            'formId' => $this->config->get('calendar_submit_formid'),
-            'time' => $this->config->get('calendar_submit_date'),
-            'url' => $this->config->get('calendar_submit_url'),
-            'ipAddr' => $this->config->get('calendar_submit_ip'),
-            'ua' => $this->config->get('calendar_submit_agent'),
+        $Items = array(
+            'event_title' => $this->config->get('calendar_event_title'),
+            'start_date' => $this->config->get('calendar_start_date'),
+            'start_time' => $this->config->get('calendar_start_time'),
+            'end_date' => $this->config->get('calendar_end_date'),
+            'end_time' => $this->config->get('calendar_end_time'),
         );
-        $values = array();
+        /*
+        $values = array(
+            'summary' => '{$this->config->get($Items[event_title])}', //予定のタイトル
+            'start' => array(
+                'dateTime' => '{$this->config->get($Items[start_date])}T10:00:00+09:00',// 開始日時
+                'timeZone' => 'Asia/Tokyo',
+            ),
+            'end' => array(
+                'dateTime' => '2020-07-20T11:00:00+09:00', // 終了日時
+                'timeZone' => 'Asia/Tokyo',
+            ),
+        );*/
+        $values = array(
+            'summary' => 'サンプルタイトル', //予定のタイトル
+            'start' => array(
+                'dateTime' => '2020-07-20T10:00:00+09:00',// 開始日時
+                'timeZone' => 'Asia/Tokyo',
+            ),
+            'end' => array(
+                'dateTime' => '2020-07-20T11:00:00+09:00', // 終了日時
+                'timeZone' => 'Asia/Tokyo',
+            ),
+        );
 
-        foreach ($checkItems as $item => $check) {
-            if ($check !== 'true') {
-                continue;
-            }
-            $method = 'get' .ucwords($item);
-            if (is_callable(array('self', $method))) {
-                $values[] = call_user_func(array($this, $method));
-            }
-        }
-        foreach ($field->_aryField as $key => $val) {
-            $values[] = $this-> getCellData($field->get($key));
-        }
         $this->update($values);
     }
 
@@ -78,17 +90,7 @@ class Engine
         $service = new Google_Service_Calendar($client);
         $calendarId = $this->config->get('calendar_id');
 
-        $event = new Google_Service_Calendar_Event(array(
-            'summary' => 'テストの予定を登録するよ6', //予定のタイトル
-            'start' => array(
-                'dateTime' => '2019-06-01T10:00:00+09:00',// 開始日時
-                'timeZone' => 'Asia/Tokyo',
-            ),
-            'end' => array(
-                'dateTime' => '2019-06-01T11:00:00+09:00', // 終了日時
-                'timeZone' => 'Asia/Tokyo',
-            ),
-        ));
+        $event = new Google_Service_Calendar_Event($values);
 
         $response = $service->event->insert($calendarId, $event);
 

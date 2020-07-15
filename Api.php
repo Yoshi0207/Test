@@ -5,6 +5,9 @@ namespace Acms\Plugins\GoogleCalendar;
 use Acms\Services\Facades\Storage;
 use DB;
 use SQL;
+use Google_Client;
+use Google_Service_Calendar;
+use Google_Exception;
 
 class Api
 {
