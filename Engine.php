@@ -87,11 +87,11 @@ class Engine
         $values = array(
             'summary' => $field->get($Items["event_title"]), //予定のタイトル
             'start' => array(
-                'dateTime' => $field->get("start_date")."T".$field->get("start_time"),// 開始日時
+                'dateTime' => $field->get("start_date")."T".$field->get("start_time")."-09:00",// 開始日時
                 'timeZone' => 'Asia/Tokyo',
             ),
             'end' => array(
-                'dateTime' => $field->get("end_date")."T".$field->get("end_time"), // 終了日時
+                'dateTime' => $field->get("end_date")."T".$field->get("end_time")."-09:00", // 終了日時
                 'timeZone' => 'Asia/Tokyo',
             ),
         );
