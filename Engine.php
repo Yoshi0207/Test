@@ -80,7 +80,7 @@ class Engine
             // 開始時刻 yy-mm-ddT00:00:00timezone
             'start' => array(
                 'dateTime' => $field->get($formItems["calendar_start_date"])."T".$field->get($formItems["calendar_start_time"]),// 開始日時
-                'timeZone' => $formItems["timeZone_formID"],
+                'timeZone' => $formItems["calendar_event_timeZone"],
             ),
 
             // 終了時刻
