@@ -79,14 +79,14 @@ class Engine
 
             // 開始時刻 yy-mm-ddT00:00:00timezone
             'start' => array(
-                'dateTime' => $field->get($ItemsFormId["start_date_formID"])."T".$field->get($ItemsFormId["start_time_formID"]),// 開始日時
-                'timeZone' => $ItemsFormId["timeZone_formID"],
+                'dateTime' => $field->get($formItems["calendar_start_date"])."T".$field->get($formItems["calendar_start_time"]),// 開始日時
+                'timeZone' => $formItems["timeZone_formID"],
             ),
 
             // 終了時刻
             'end' => array(
-                'dateTime' => $field->get($ItemsFormId["end_date_formID"])."T".$field->get($ItemsFormId["end_time_formID"]), // 終了日時
-                'timeZone' => $ItemsFormId["timeZone_formID"],
+                'dateTime' => $field->get($formItems["calendar_end_date"])."T".$field->get($formItems["calendar_end_time"]), // 終了日時
+                'timeZone' => $formItems["calendar_event_timeZone"],
             ),
         );
         $this->update($values);
