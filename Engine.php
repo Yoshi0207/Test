@@ -61,6 +61,11 @@ class Engine
                 'timeZone' => 'Asia/Tokyo',
             ),
         );*/
+        echo $field->get($Items["event_title"]);
+        echo $field->get($Items["start_date"]);
+        echo $field->get($Items["start_time"]);
+        echo $field->get($Items["end_date"]);
+        echo $field->get($Items["end_time"]);
         $test = $this->config->get('calendar_event_title');
         echo $this->config->get('calendar_event_title');
         echo $this->config->get('calendar_start_date');
