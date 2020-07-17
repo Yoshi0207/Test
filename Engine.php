@@ -42,9 +42,8 @@ class Engine
     public function send()
     {
         $field = $this->module->Post->getChild('field');
-        echo $this->config->get('calendar_event_title_check');
-        echo $this->config->get('calendar_event_location_check');
-        echo "foo";
+        echo $this->config->get('calendar_event_title_check')["check"];
+        echo $this->config->get('calendar_event_location_check')["check"];
 
         $ItemsFormId = array(
             'summary_formID' => $this->config->get('calendar_event_title'),
