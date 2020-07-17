@@ -61,7 +61,7 @@ class Engine
                 'timeZone' => 'Asia/Tokyo',
             ),
         );*/
-        /*
+        
         echo $field->get($Items["event_title"]);
         echo $field->get($Items["start_date"]);
         echo $field->get($Items["start_time"]);
@@ -81,7 +81,10 @@ class Engine
             echo $key;
             echo gettype($key);
             echo $field->get($key);
-        }*/
+        }
+        echo $field->get($Items["event-title"]);
+        echo $field->get("start_date")."T".$field->get("start_time");
+        echo $field->get("end_date")."T".$field->get("end_time")
         $values = array(
             'summary' => $field->get($Items["event-title"]), //予定のタイトル
             'start' => array(
