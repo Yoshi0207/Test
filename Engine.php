@@ -151,7 +151,7 @@ class Engine
                 'timeZone' => $formItems["calendar_event_timeZone"],
             ),
             'attendees' => array(
-                array('email' => 'yoshihitot2019@gmail.com'),
+                array('email' => 'yoaplid002@hotmail.co.jp'),
             ),
         );
         return $values;
