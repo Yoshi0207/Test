@@ -30,6 +30,7 @@
 			<div class="acms-admin-form-checkbox">
 				<input type="checkbox" name="calendar_event_description_check[]" value="true" id="calendar_event_description_check-true"{calendar_event_description_check:checked#true} />
 				<label for="calendar_event_description_check-true"><i class="acms-admin-ico-checkbox"></i>カスタムフィールド名と連携する</label>
+				<input type="hidden" name="mail[]" value="calendar_event_description_check" />
 			</div>
 		  <input type="text" name="calendar_event_description" value="{calendar_event_description}" class="acms-admin-form-width-full" />
 		  <input type="hidden" name="mail[]" value="calendar_event_description" />
@@ -41,6 +42,7 @@
 		<div class="acms-admin-form-checkbox">
 			<input type="checkbox" name="calendar_start_date_check[]" value="true" id="calendar_start_date_check-true"{calendar_start_date_check:checked#true} />
 			<label for="calendar_start_date_check-true"><i class="acms-admin-ico-checkbox"></i>カスタムフィールド名と連携する</label>
+			<input type="hidden" name="mail[]" value="calendar_start_date_check" />
 		</div>
 		<input type="text" name="calendar_start_date" value="{calendar_start_date}" class="acms-admin-form-width-full" />
 		<input type="hidden" name="mail[]" value="calendar_start_date" />
@@ -52,6 +54,7 @@
 		<div class="acms-admin-form-checkbox">
 			<input type="checkbox" name="calendar_start_time_check[]" value="true" id="calendar_start_time_check-true"{calendar_start_time_check:checked#true} />
 			<label for="calendar_start_time_check-true"><i class="acms-admin-ico-checkbox"></i>カスタムフィールド名と連携する</label>
+			<input type="hidden" name="mail[]" value="calendar_start_time_check" />
 		</div>
 		<input type="text" name="calendar_start_time" value="{calendar_start_time}" class="acms-admin-form-width-full" />
 		<input type="hidden" name="mail[]" value="calendar_start_time" />
@@ -63,6 +66,7 @@
 		<div class="acms-admin-form-checkbox">
 			<input type="checkbox" name="calendar_end_date_check[]" value="true" id="calendar_end_date_check-true"{calendar_end_date_check:checked#true} />
 			<label for="calendar_end_date_check-true"><i class="acms-admin-ico-checkbox"></i>カスタムフィールド名と連携する</label>
+			<input type="hidden" name="mail[]" value="calendar_end_date_check" />
 		</div>
 		<input type="text" name="calendar_end_date" value="{calendar_end_date}" class="acms-admin-form-width-full" />
 		<input type="hidden" name="mail[]" value="calendar_end_date" />
@@ -74,17 +78,19 @@
 		<div class="acms-admin-form-checkbox">
 			<input type="checkbox" name="calendar_end_time_check[]" value="true" id="calendar_end_time_check-true"{calendar_end_time_check:checked#true} />
 			<label for="calendar_end_time_check-true"><i class="acms-admin-ico-checkbox"></i>カスタムフィールド名と連携する</label>
+			<input type="hidden" name="mail[]" value="calendar_end_time_check" />
 		</div>
 		<input type="text" name="calendar_end_time" value="{calendar_end_time}" class="acms-admin-form-width-full" />
 		<input type="hidden" name="mail[]" value="calendar_end_time" />
 	  </td>
 	</tr>
 	<tr>
-		<th>タイムゾーン<i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="GoogleCalendarイベントのタイムゾーンをIANA Time Zone Database name を用いて指定します。例：Asia/Tokyo(指定がない場合、カレンダーのデフォルトタイムゾーンが使用されます)"></i></th>
+		<th>タイムゾーン<i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="GoogleCalendarイベントのタイムゾーンをIANA Time Zone Database name を用いて指定します。例：Asia/Tokyo(この項目は必須です。この入力がない場合カレンダーにイベントが登録されません)"></i></th>
 		<td>
 			<div class="acms-admin-form-checkbox">
 				<input type="checkbox" name="calendar_event_timeZone_check[]" value="true" id="calendar_event_timeZone_check-true"{calendar_event_timeZone_check:checked#true} />
 				<label for="calendar_event_timeZone_check-true"><i class="acms-admin-ico-checkbox"></i>カスタムフィールド名と連携する</label>
+				<input type="hidden" name="mail[]" value="calendar_event_timeZone_check" />
 			</div>
 		  <input type="text" name="calendar_event_timeZone" value="{calendar_event_timeZone}" class="acms-admin-form-width-full" />
 		  <input type="hidden" name="mail[]" value="calendar_event_timeZone" />

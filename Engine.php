@@ -42,49 +42,40 @@ class Engine
     public function send()
     {
         $field = $this->module->Post->getChild('field');
-        echo $this->config->get('calendar_event_title_check');
-        echo $this->config->get('calendar_event_location_check');
 
-        $ItemsFormId = array(
-            'summary_formID' => $this->config->get('calendar_event_title'),
-            'location_formID' => $this->config->get('calendar_event_location'),
-            'description_formID' => $this->config->get('calendar_event_description'),
-            'start_date_formID' => $this->config->get('calendar_start_date'),
-            'start_time_formID' => $this->config->get('calendar_start_time'),
-            'end_date_formID' => $this->config->get('calendar_end_date'),
-            'end_time_formID' => $this->config->get('calendar_end_time'),
-            'timeZone_formID' => $this->config->get('calendar_event_timeZone'),
+        // 各設定項目について、チェックボックスの真偽値を取得
+        // ablog cms カスタムフィールドを使用：true
+        // ablog cms カスタムフィールドを使用しない：false
+        // $checkItems:bool[]
+        $checkItems = array(
+            'calendar_event_title' => $this->config->get('calendar_event_title_check'),
+            'calendar_event_location' => $this->config->get('calendar_event_location_check'),
+            'calendar_event_description' => $this->config->get('calendar_event_description_check'),
+            'calendar_start_date' => $this->config->get('calendar_start_date_check'),
+            'calendar_start_time' => $this->config->get('calendar_start_time_check'),
+            'calendar_end_date' => $this->config->get('calendar_end_date_check'),
+            'calendar_end_time' => $this->config->get('calendar_end_time_check'),
+            'calendar_event_timeZone' => $this->config->get('calendar_event_timeZone_check'),
         );
 
-        echo $this->config->get('calendar_event_title');
-        echo $this->config->get('calendar_start_date');
-        echo $this->config->get('calendar_start_time');
-        echo $this->config->get('calendar_end_date');
-        echo $this->config->get('calendar_end_time');
-        echo $this->config->get('calendar_event_timeZone');
-        echo $this->config->get('calendar_event_location');
-        echo $this->config->get('calendar_event_description');
-
-
-        echo $field->get($ItemsFormId["event_title_formID"]);
-        echo $field->get($ItemsFormId["start_date_formID"]);
-        echo $field->get($ItemsFormId["start_time_formID"]);
-        echo $field->get($ItemsFormId["end_date_formID"]);
-        echo $field->get($ItemsFormId["end_time_formID"]);
-        echo $field->get($ItemsFormId["timeZone_formID"]);
-        echo $field->get($ItemsFormId["location_formID"]);
-        echo $field->get($ItemsFormId["description_formID"]);
-
-        echo $field->get($ItemsFormId["summary_formID"]);
-        echo $field->get($ItemsFormId["start_date_formID"])."T".$field->get($ItemsFormId["start_time_formID"]);
-        echo $field->get($ItemsFormId["end_date_formID"])."T".$field->get($ItemsFormId["end_time_formID"]);
-
+        // 各設定項目について、記述されている値を取得
+        // $formField:string[]
+        $formItems = array(
+            'calendar_event_title' => $this->config->get('calendar_event_title'),
+            'calendar_event_location' => $this->config->get('calendar_event_location'),
+            'calendar_event_description' => $this->config->get('calendar_event_description'),
+            'calendar_start_date' => $this->config->get('calendar_start_date'),
+            'calendar_start_time' => $this->config->get('calendar_start_time'),
+            'calendar_end_date' => $this->config->get('calendar_end_date'),
+            'calendar_end_time' => $this->config->get('calendar_end_time'),
+            'calendar_event_timeZone' => $this->config->get('calendar_event_timeZone'),
+        );
 
         $values = array(
             // 予定タイトル
-            'summary' => $field->get($ItemsFormId["summary_formID"]),
-            'location' => $field->get($ItemsFormId["location_formID"]),
-            'description' => $field->get($ItemsFormId["description_formID"]),
+            'summary' => $checkItems["calendar_event_title"] ? $field->get($formItems["calendar_event_title"]) : $formItems["calendar_event_title"],
+            'location' => $checkItems["calendar_event_location"] ? $field->get($formItems["calendar_event_location"]) : $formItems["calendar_event_location"],
+            'description' => $checkItems["calendar_event_description"] ? $field->get($formItems["calendar_event_description"]) : $formItems["calendar_event_description"],
 
             // 開始時刻 yy-mm-ddT00:00:00timezone
             'start' => array(
