@@ -75,7 +75,7 @@ class Engine
         echo $field->get($ItemsFormId["location_formID"]);
         echo $field->get($ItemsFormId["description_formID"]);
 
-        echo $field->get($ItemsFormId["event_title_formID"]);
+        echo $field->get($ItemsFormId["summary_formID"]);
         echo $field->get($ItemsFormId["start_date_formID"])."T".$field->get($ItemsFormId["start_time_formID"]);
         echo $field->get($ItemsFormId["end_date_formID"])."T".$field->get($ItemsFormId["end_time_formID"]);
 
@@ -89,13 +89,13 @@ class Engine
             // 開始時刻 yy-mm-ddT00:00:00timezone
             'start' => array(
                 'dateTime' => $field->get($ItemsFormId["start_date_formID"])."T".$field->get($ItemsFormId["start_time_formID"]),// 開始日時
-                'timeZone' => $field->get($ItemsFormId["timeZone_formID"]),
+                'timeZone' => $ItemsFormId["timeZone_formID"],
             ),
 
             // 終了時刻
             'end' => array(
                 'dateTime' => $field->get($ItemsFormId["end_date_formID"])."T".$field->get($ItemsFormId["end_time_formID"]), // 終了日時
-                'timeZone' => $field->get($ItemsFormId["timeZone_formID"]),
+                'timeZone' => $ItemsFormId["timeZone_formID"],
             ),
         );
         $this->update($values);
