@@ -83,8 +83,8 @@ class Engine
         $values = array(
             // 予定タイトル
             'summary' => $field->get($ItemsFormId["summary_formID"]),
-            'location' => $field->get($ItemsFormId["location_formID"]),
-            'description' => $field->get($ItemsFormId["description_formID"]),
+            //'location' => $field->get($ItemsFormId["location_formID"]),
+            //'description' => $field->get($ItemsFormId["description_formID"]),
 
             // 開始時刻 yy-mm-ddT00:00:00timezone
             'start' => array(
