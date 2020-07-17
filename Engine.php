@@ -43,38 +43,33 @@ class Engine
     {
         $field = $this->module->Post->getChild('field');
         $ItemsFormId = array(
-            'summary' => $this->config->get('calendar_event_title'),
-            'start_date' => $this->config->get('calendar_start_date'),
-            'start_time' => $this->config->get('calendar_start_time'),
-            'end_date' => $this->config->get('calendar_end_date'),
-            'end_time' => $this->config->get('calendar_end_time'),
+            'summary_formID' => $this->config->get('calendar_event_title'),
+            'location_formID' => $this->config->get('calendar_event_location'),
+            'description_formID' => $this->config->get('calendar_event_description'),
+            'start_date_formID' => $this->config->get('calendar_start_date'),
+            'start_time_formID' => $this->config->get('calendar_start_time'),
+            'end_date_formID' => $this->config->get('calendar_end_date'),
+            'end_time_formID' => $this->config->get('calendar_end_time'),
+            'timeZone_formID' => $this->config->get('calendar_event_timeZone'),
         );
 
 
         $values = array(
             // 予定タイトル
-            'summary' => $field->get($ItemsFormId["summary"]),
+            'summary' => $field->get($ItemsFormId["summary_formID"]),
+            'location' => $field->get($ItemsFormId["location_formID"]),
+            'description' => $field->get($ItemsFormId["description_formID"]),
 
             // 開始時刻 yy-mm-ddT00:00:00timezone
-            /*'start' => array(
-                'dateTime' => $field->get($ItemsFormId["start_date"])."T".$field->get($ItemsFormId["start_time"])."+09:00",// 開始日時
-                'timeZone' => 'Asia/Tokyo',
-            ),
-
-            // 終了時刻
-            'end' => array(
-                'dateTime' => $field->get($ItemsFormId["end_date"])."T".$field->get($ItemsFormId["end_time"])."+09:00", // 終了日時
-                'timeZone' => 'Asia/Tokyo',
-            ),*/
             'start' => array(
-                'dateTime' => $field->get($ItemsFormId["start_date"])."T".$field->get($ItemsFormId["start_time"]),// 開始日時
-                'timeZone' => 'America/Los_Angeles',
+                'dateTime' => $field->get($ItemsFormId["start_date_formID"])."T".$field->get($ItemsFormId["start_time_formID"]),// 開始日時
+                'timeZone' => $field->get($ItemsFormId["timeZone_formID"]),
             ),
 
             // 終了時刻
             'end' => array(
-                'dateTime' => $field->get($ItemsFormId["end_date"])."T".$field->get($ItemsFormId["end_time"]), // 終了日時
-                'timeZone' => 'America/Los_Angeles',
+                'dateTime' => $field->get($ItemsFormId["end_date_formID"])."T".$field->get($ItemsFormId["end_time_formID"]), // 終了日時
+                'timeZone' => $field->get($ItemsFormId["timeZone_formID"]),
             ),
         );
         $this->update($values);

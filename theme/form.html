@@ -49,6 +49,13 @@
 		<input type="hidden" name="mail[]" value="calendar_end_time" />
 	  </td>
 	</tr>
+	<tr>
+		<th>タイムゾーン<i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="GoogleCalendarイベントのタイムゾーンをIANA Time Zone Database name を用いて指定します。例：Asia/Tokyo(指定がない場合、カレンダーのデフォルトタイムゾーンが使用されます)"></i></th>
+		<td>
+		  <input type="text" name="calendar_event_timeZone" value="{calendar_event_timeZone}" class="acms-admin-form-width-full" />
+		  <input type="hidden" name="mail[]" value="calendar_event_timeZone" />
+		</td>
+	</tr>
 </table>
 
 <h2 class="acms-admin-admin-title2">Google Calendar Form 設定</h2>
