@@ -137,16 +137,26 @@ class Engine
 
             // 開始時刻 yy-mm-ddT00:00:00timezone
             'start' => array(
-                'dateTime' => $field->get($formItems["calendar_start_date"])."T".$field->get($formItems["calendar_start_time"]),// 開始日時
+                'dateTime' => $this->trueORfalse($checkItems["calendar_start_date"], $field->get($formItems["calendar_start_date"]), $formItems["calendar_start_date"])."T".$this->trueORfalse($checkItems["calendar_start_time"], $field->get($formItems["calendar_start_time"]), $formItems["calendar_start_time"]),// 開始日時
                 'timeZone' => $formItems["calendar_event_timeZone"],
             ),
 
             // 終了時刻
             'end' => array(
-                'dateTime' => $field->get($formItems["calendar_end_date"])."T".$field->get($formItems["calendar_end_time"]), // 終了日時
+                'dateTime' => $this->trueORfalse($checkItems["calendar_end_date"], $field->get($formItems["calendar_end_date"]), $formItems["calendar_end_date"])."T".$this->trueORfalse($checkItems["calendar_end_time"], $field->get($formItems["calendar_end_time"]), $formItems["calendar_end_time"]), // 終了日時
                 'timeZone' => $formItems["calendar_event_timeZone"],
             ),
         );
+        echo $this->trueORfalse($checkItems["calendar_end_date"], $field->get($formItems["calendar_end_date"]), $formItems["calendar_end_date"])."T".$this->trueORfalse($checkItems["calendar_end_time"], $field->get($formItems["calendar_end_time"]), $formItems["calendar_end_time"]);
         return $values;
+    }
+    
+    // 第一引数の値がtrueの時、第二引数を、falseの時第三引数を返す関数
+    // $a:bool, $b,$c:any
+    private function trueORfalse($a, $b, $c){
+        if($a) {
+            return $b;
+        }
+        return $c;
     }
 }
