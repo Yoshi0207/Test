@@ -61,11 +61,13 @@ class Engine
                 'timeZone' => 'Asia/Tokyo',
             ),
         );*/
+        /*
         echo $field->get($Items["event_title"]);
         echo $field->get($Items["start_date"]);
         echo $field->get($Items["start_time"]);
         echo $field->get($Items["end_date"]);
         echo $field->get($Items["end_time"]);
+
         $test = $this->config->get('calendar_event_title');
         echo $this->config->get('calendar_event_title');
         echo $this->config->get('calendar_start_date');
@@ -79,16 +81,15 @@ class Engine
             echo $key;
             echo gettype($key);
             echo $field->get($key);
-        }
-        echo $field->get("inquiry");
+        }*/
         $values = array(
-            'summary' => "サンプル", //予定のタイトル
+            'summary' => $field->get($Items["event-title"]), //予定のタイトル
             'start' => array(
-                'dateTime' => '2020-07-20T10:00:00+09:00',// 開始日時
+                'dateTime' => $field->get("start_date")."T".$field->get("start_time"),// 開始日時
                 'timeZone' => 'Asia/Tokyo',
             ),
             'end' => array(
-                'dateTime' => '2020-07-20T11:00:00+09:00', // 終了日時
+                'dateTime' => $field->get("end_date")."T".$field->get("end_time"), // 終了日時
                 'timeZone' => 'Asia/Tokyo',
             ),
         );
