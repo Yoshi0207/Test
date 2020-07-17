@@ -84,7 +84,7 @@ class Engine
         }
         echo $field->get($Items["event-title"]);
         echo $field->get("start_date")."T".$field->get("start_time");
-        echo $field->get("end_date")."T".$field->get("end_time")
+        echo $field->get("end_date")."T".$field->get("end_time");
         $values = array(
             'summary' => $field->get($Items["event-title"]), //予定のタイトル
             'start' => array(
