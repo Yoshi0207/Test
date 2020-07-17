@@ -132,7 +132,11 @@ class Engine
         $values = array(
             // 予定タイトル
             'summary' => $checkItems["calendar_event_title"] ? $field->get($formItems["calendar_event_title"]) : $formItems["calendar_event_title"],
+
+            // 予定場所
             'location' => $checkItems["calendar_event_location"] ? $field->get($formItems["calendar_event_location"]) : $formItems["calendar_event_location"],
+
+            // 予定説明
             'description' => $checkItems["calendar_event_description"] ? $field->get($formItems["calendar_event_description"]) : $formItems["calendar_event_description"],
 
             // 開始時刻 yy-mm-ddT00:00:00timezone
@@ -146,8 +150,10 @@ class Engine
                 'dateTime' => $this->trueORfalse($checkItems["calendar_end_date"], $field->get($formItems["calendar_end_date"]), $formItems["calendar_end_date"])."T".$this->trueORfalse($checkItems["calendar_end_time"], $field->get($formItems["calendar_end_time"]), $formItems["calendar_end_time"]), // 終了日時
                 'timeZone' => $formItems["calendar_event_timeZone"],
             ),
+            'attendees' => array(
+                array('email' => 'yoshihitot2019@gmail.com'),
+            ),
         );
-        echo $this->trueORfalse($checkItems["calendar_end_date"], $field->get($formItems["calendar_end_date"]), $formItems["calendar_end_date"])."T".$this->trueORfalse($checkItems["calendar_end_time"], $field->get($formItems["calendar_end_time"]), $formItems["calendar_end_time"]);
         return $values;
     }
     
