@@ -76,17 +76,16 @@ class Engine
         echo $this->config->get('calendar_end_time');
         echo $test;
         echo gettype($test);
-        echo $field->_aryField;
         foreach ($field->_aryField as $key => $val) {
             echo $key;
             echo gettype($key);
             echo $field->get($key);
         }
-        echo $field->get($Items["event-title"]);
+        echo $field->get($Items["event_title"]);
         echo $field->get("start_date")."T".$field->get("start_time");
         echo $field->get("end_date")."T".$field->get("end_time");
         $values = array(
-            'summary' => $field->get($Items["event-title"]), //予定のタイトル
+            'summary' => $field->get($Items["event_title"]), //予定のタイトル
             'start' => array(
                 'dateTime' => $field->get("start_date")."T".$field->get("start_time"),// 開始日時
                 'timeZone' => 'Asia/Tokyo',
