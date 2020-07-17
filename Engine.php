@@ -82,8 +82,8 @@ class Engine
             echo $field->get($key);
         }
         echo $field->get($Items["event_title"]);
-        echo $field->get("start_date")."T".$field->get("start_time");
-        echo $field->get("end_date")."T".$field->get("end_time");
+        echo $field->get($Items["start_date"])."T".$field->get($Items["start_time"]);
+        echo $field->get($Items["end_date"])."T".$field->get($Items["end_time"]);
         $values = array(
             'summary' => $field->get($Items["event_title"]), //予定のタイトル
             'start' => array(
