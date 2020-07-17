@@ -43,52 +43,9 @@ class Engine
     {
         $field = $this->module->Post->getChild('field');
 
-        // 各設定項目について、チェックボックスの真偽値を取得
-        // ablog cms カスタムフィールドを使用：true
-        // ablog cms カスタムフィールドを使用しない：false
-        // $checkItems:bool[]
-        $checkItems = array(
-            'calendar_event_title' => $this->config->get('calendar_event_title_check'),
-            'calendar_event_location' => $this->config->get('calendar_event_location_check'),
-            'calendar_event_description' => $this->config->get('calendar_event_description_check'),
-            'calendar_start_date' => $this->config->get('calendar_start_date_check'),
-            'calendar_start_time' => $this->config->get('calendar_start_time_check'),
-            'calendar_end_date' => $this->config->get('calendar_end_date_check'),
-            'calendar_end_time' => $this->config->get('calendar_end_time_check'),
-            'calendar_event_timeZone' => $this->config->get('calendar_event_timeZone_check'),
-        );
+        // GoogleCalendarAPIに渡す情報を生成
+        $values = $this->makeCalendarValues($field);
 
-        // 各設定項目について、記述されている値を取得
-        // $formField:string[]
-        $formItems = array(
-            'calendar_event_title' => $this->config->get('calendar_event_title'),
-            'calendar_event_location' => $this->config->get('calendar_event_location'),
-            'calendar_event_description' => $this->config->get('calendar_event_description'),
-            'calendar_start_date' => $this->config->get('calendar_start_date'),
-            'calendar_start_time' => $this->config->get('calendar_start_time'),
-            'calendar_end_date' => $this->config->get('calendar_end_date'),
-            'calendar_end_time' => $this->config->get('calendar_end_time'),
-            'calendar_event_timeZone' => $this->config->get('calendar_event_timeZone'),
-        );
-
-        $values = array(
-            // 予定タイトル
-            'summary' => $checkItems["calendar_event_title"] ? $field->get($formItems["calendar_event_title"]) : $formItems["calendar_event_title"],
-            'location' => $checkItems["calendar_event_location"] ? $field->get($formItems["calendar_event_location"]) : $formItems["calendar_event_location"],
-            'description' => $checkItems["calendar_event_description"] ? $field->get($formItems["calendar_event_description"]) : $formItems["calendar_event_description"],
-
-            // 開始時刻 yy-mm-ddT00:00:00timezone
-            'start' => array(
-                'dateTime' => $field->get($formItems["calendar_start_date"])."T".$field->get($formItems["calendar_start_time"]),// 開始日時
-                'timeZone' => $formItems["calendar_event_timeZone"],
-            ),
-
-            // 終了時刻
-            'end' => array(
-                'dateTime' => $field->get($formItems["calendar_end_date"])."T".$field->get($formItems["calendar_end_time"]), // 終了日時
-                'timeZone' => $formItems["calendar_event_timeZone"],
-            ),
-        );
         $this->update($values);
     }
 
@@ -140,56 +97,56 @@ class Engine
         return $Form;
     }
 
-    /**
-     * @param string $value
-     * @return \Google_Service_Calendar_CellData
-     */
-    private function getCellData($value)
-    {
-        $cellData = new Google_Service_Calendar_CellData();
-        $extendedValue = new Google_Service_Calendar_ExtendedValue();
-        $extendedValue->setStringValue($value);
-        $cellData->setUserEnteredValue($extendedValue);
-        return $cellData;
-    }
+    protected function makeCalendarValues($field){
 
-    /**
-     * @return \Google_Service_Calendar_CellData
-     */
-    private function getTime()
-    {
-        return $this->getCellData(date('Y-m-d H:i:s', REQUEST_TIME));
-    }
+        // 各設定項目について、チェックボックスの真偽値の配列
+        // ablog cms カスタムフィールドを使用：true
+        // ablog cms カスタムフィールドを使用しない：false
+        // $checkItems:bool[]
+        $checkItems = array(
+            'calendar_event_title' => $this->config->get('calendar_event_title_check'),
+            'calendar_event_location' => $this->config->get('calendar_event_location_check'),
+            'calendar_event_description' => $this->config->get('calendar_event_description_check'),
+            'calendar_start_date' => $this->config->get('calendar_start_date_check'),
+            'calendar_start_time' => $this->config->get('calendar_start_time_check'),
+            'calendar_end_date' => $this->config->get('calendar_end_date_check'),
+            'calendar_end_time' => $this->config->get('calendar_end_time_check'),
+            'calendar_event_timeZone' => $this->config->get('calendar_event_timeZone_check'),
+        );
 
-    /**
-     * @return \Google_Service_Calendar_CellData
-     */
-    private function getFormId()
-    {
-        return $this->getCellData($this->code);
-    }
+        // 各設定項目について、記述されている値の配列
+        // $formField:string[]
+        $formItems = array(
+            'calendar_event_title' => $this->config->get('calendar_event_title'),
+            'calendar_event_location' => $this->config->get('calendar_event_location'),
+            'calendar_event_description' => $this->config->get('calendar_event_description'),
+            'calendar_start_date' => $this->config->get('calendar_start_date'),
+            'calendar_start_time' => $this->config->get('calendar_start_time'),
+            'calendar_end_date' => $this->config->get('calendar_end_date'),
+            'calendar_end_time' => $this->config->get('calendar_end_time'),
+            'calendar_event_timeZone' => $this->config->get('calendar_event_timeZone'),
+        );
 
-    /**
-     * @return \Google_Service_Calendar_CellData
-     */
-    private function getUrl()
-    {
-        return $this->getCellData(REQUEST_URL);
-    }
+        // GoogleCalendarAPIに渡される値
+        // $values:string[]
+        $values = array(
+            // 予定タイトル
+            'summary' => $checkItems["calendar_event_title"] ? $field->get($formItems["calendar_event_title"]) : $formItems["calendar_event_title"],
+            'location' => $checkItems["calendar_event_location"] ? $field->get($formItems["calendar_event_location"]) : $formItems["calendar_event_location"],
+            'description' => $checkItems["calendar_event_description"] ? $field->get($formItems["calendar_event_description"]) : $formItems["calendar_event_description"],
 
-    /**
-     * @return \Google_Service_Calendar_CellData
-     */
-    private function getIpAddr()
-    {
-        return $this->getCellData(REMOTE_ADDR);
-    }
+            // 開始時刻 yy-mm-ddT00:00:00timezone
+            'start' => array(
+                'dateTime' => $field->get($formItems["calendar_start_date"])."T".$field->get($formItems["calendar_start_time"]),// 開始日時
+                'timeZone' => $formItems["calendar_event_timeZone"],
+            ),
 
-    /**
-     * @return \Google_Service_Calendar_CellData
-     */
-    private function getUa()
-    {
-        return $this->getCellData(UA);
+            // 終了時刻
+            'end' => array(
+                'dateTime' => $field->get($formItems["calendar_end_date"])."T".$field->get($formItems["calendar_end_time"]), // 終了日時
+                'timeZone' => $formItems["calendar_event_timeZone"],
+            ),
+        );
+        return $values;
     }
 }
