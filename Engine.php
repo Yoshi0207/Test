@@ -42,57 +42,39 @@ class Engine
     public function send()
     {
         $field = $this->module->Post->getChild('field');
-        $Items = array(
-            'event_title' => $this->config->get('calendar_event_title'),
+        $ItemsFormId = array(
+            'summary' => $this->config->get('calendar_event_title'),
             'start_date' => $this->config->get('calendar_start_date'),
             'start_time' => $this->config->get('calendar_start_time'),
             'end_date' => $this->config->get('calendar_end_date'),
             'end_time' => $this->config->get('calendar_end_time'),
         );
-        /*
-        $values = array(
-            'summary' => '{$this->config->get($Items[event_title])}', //予定のタイトル
-            'start' => array(
-                'dateTime' => '{$this->config->get($Items[start_date])}T10:00:00+09:00',// 開始日時
-                'timeZone' => 'Asia/Tokyo',
-            ),
-            'end' => array(
-                'dateTime' => '2020-07-20T11:00:00+09:00', // 終了日時
-                'timeZone' => 'Asia/Tokyo',
-            ),
-        );*/
-        
-        echo $field->get($Items["event_title"]);
-        echo $field->get($Items["start_date"]);
-        echo $field->get($Items["start_time"]);
-        echo $field->get($Items["end_date"]);
-        echo $field->get($Items["end_time"]);
 
-        $test = $this->config->get('calendar_event_title');
-        echo $this->config->get('calendar_event_title');
-        echo $this->config->get('calendar_start_date');
-        echo $this->config->get('calendar_start_time');
-        echo $this->config->get('calendar_end_date');
-        echo $this->config->get('calendar_end_time');
-        echo $test;
-        echo gettype($test);
-        foreach ($field->_aryField as $key => $val) {
-            echo $key;
-            echo gettype($key);
-            echo $field->get($key);
-        }
-        echo $field->get($Items["event_title"]);
-        echo $field->get($Items["start_date"])."T".$field->get($Items["start_time"]);
-        echo $field->get($Items["end_date"])."T".$field->get($Items["end_time"]);
+
         $values = array(
-            'summary' => $field->get($Items["event_title"]), //予定のタイトル
-            'start' => array(
-                'dateTime' => $field->get($Items["start_date"])."T".$field->get($Items["start_time"])."+09:00",// 開始日時
+            // 予定タイトル
+            'summary' => $field->get($ItemsFormId["summary"]),
+
+            // 開始時刻 yy-mm-ddT00:00:00timezone
+            /*'start' => array(
+                'dateTime' => $field->get($ItemsFormId["start_date"])."T".$field->get($ItemsFormId["start_time"])."+09:00",// 開始日時
                 'timeZone' => 'Asia/Tokyo',
             ),
+
+            // 終了時刻
             'end' => array(
-                'dateTime' => $field->get($Items["end_date"])."T".$field->get($Items["end_time"])."+09:00", // 終了日時
+                'dateTime' => $field->get($ItemsFormId["end_date"])."T".$field->get($ItemsFormId["end_time"])."+09:00", // 終了日時
                 'timeZone' => 'Asia/Tokyo',
+            ),*/
+            'start' => array(
+                'dateTime' => $field->get($ItemsFormId["start_date"])."T".$field->get($ItemsFormId["start_time"]),// 開始日時
+                'timeZone' => 'America/Los_Angeles',
+            ),
+
+            // 終了時刻
+            'end' => array(
+                'dateTime' => $field->get($ItemsFormId["end_date"])."T".$field->get($ItemsFormId["end_time"]), // 終了日時
+                'timeZone' => 'America/Los_Angeles',
             ),
         );
         $this->update($values);

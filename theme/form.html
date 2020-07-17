@@ -8,6 +8,20 @@
 	  </td>
 	</tr>
 	<tr>
+		<th>場所</th>
+		<td>
+		  <input type="text" name="calendar_event_location" value="{calendar_event_location}" class="acms-admin-form-width-full" />
+		  <input type="hidden" name="mail[]" value="calendar_event_location" />
+		</td>
+	</tr>
+	<tr>
+		<th>説明</th>
+		<td>
+		  <input type="text" name="calendar_event_description" value="{calendar_event_description}" class="acms-admin-form-width-full" />
+		  <input type="hidden" name="mail[]" value="calendar_event_description" />
+		</td>
+	</tr>
+	<tr>
 	  <th>開始日付</th>
 	  <td>
 		<input type="text" name="calendar_start_date" value="{calendar_start_date}" class="acms-admin-form-width-full" />
@@ -37,7 +51,7 @@
 	</tr>
 </table>
 
-<h2 class="acms-admin-admin-title2">Google スプレッドシート Form 設定</h2>
+<h2 class="acms-admin-admin-title2">Google Calendar Form 設定</h2>
 <table class="acms-admin-table-admin-edit">
 	<tr>
 		<th>Calendar ID</th>
