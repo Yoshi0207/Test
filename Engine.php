@@ -47,6 +47,7 @@ class Engine
         // GoogleCalendarAPIに渡す情報を生成
         $values = $this->makeCalendarValues($field);
 
+        echo print_r($values);
         $this->update($values);
     }
 
@@ -242,14 +243,5 @@ class Engine
         $day = $dateSplit[2]+$dateTimeSplit[2];
         $year = $dateSplit[0]+$dateTimeSplit[0];
         return date("Y-m-d H:i:s", mktime($hour, $min, $sec, $month, $day, $year));
-    }
-
-    // 第一引数の値がtrueの時、第二引数を、falseの時第三引数を返す関数
-    // $a:bool, $b,$c:any
-    private function trueORfalse($a, $b, $c){
-        if($a) {
-            return $b;
-        }
-        return $c;
     }
 }
